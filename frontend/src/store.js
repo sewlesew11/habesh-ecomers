@@ -48,7 +48,7 @@ const initialState = {
             ? JSON.parse(localStorage.getItem('shippingAddress'))
             : {},
 
-        paymentMethod: 'PayPal || Chapa',
+        paymentMethod: 'PayPal',
     },
 };
 const reducer = combineReducers({
@@ -77,7 +77,7 @@ const reducer = combineReducers({
     productReviewCreate: productReviewCreateReducer,
     userAddressMap: userAddressMapReducer,
     orderSummary: orderSummaryReducer,
-    orderInitializePayment: orderInitializePaymentReducer,
+
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

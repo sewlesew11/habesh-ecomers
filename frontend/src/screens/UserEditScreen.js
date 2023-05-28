@@ -15,7 +15,6 @@ export default function UserEditScreen(props) {
     const userId = id;
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    // const [isSeller, setIsSeller] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
 
     const userDetails = useSelector((state) => state.userDetails);
@@ -39,7 +38,6 @@ export default function UserEditScreen(props) {
         } else {
             setName(user.name);
             setEmail(user.email);
-            //    setIsSeller(user.isSeller);
             setIsAdmin(user.isAdmin);
         }
     }, [dispatch, navigate, successUpdate, user, userId]);
@@ -49,7 +47,7 @@ export default function UserEditScreen(props) {
 
         // dispatch update user
         dispatch(updateUser({ _id: userId, name, email, isAdmin }));
-        // dispatch(updateUser({ _id: userId, name, email, isSeller, isAdmin }));
+
     };
     return (
         <div>
@@ -74,7 +72,7 @@ export default function UserEditScreen(props) {
                                 type="text"
                                 placeholder="Enter name"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                            //  onChange={(e) => setName(e.target.value)}
                             ></input>
                         </div>
                         <div>
@@ -84,7 +82,7 @@ export default function UserEditScreen(props) {
                                 type="email"
                                 placeholder="Enter email"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                            // onChange={(e) => setEmail(e.target.value)}
                             ></input>
                         </div>
                         {/* <div>

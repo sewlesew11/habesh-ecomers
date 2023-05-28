@@ -181,16 +181,3 @@ export const deleteUser = (userId) => async (dispatch, getState) => {
     }
 };
 
-// export const listTopSellers = () => async (dispatch) => {
-//     dispatch({ type: USER_TOPSELLERS_LIST_REQUEST });
-//     try {
-//         const { data } = await axios.get('http://localhost:5000/api/users/top-sellers');
-//         dispatch({ type: USER_TOPSELLERS_LIST_SUCCESS, payload: data });
-//     } catch (error) {
-//         const message =
-//             error.response && error.response.data.message
-//                 ? error.response.data.message
-//                 : error.message;
-//         dispatch({ type: USER_TOPSELLERS_LIST_FAIL, payload: message });
-//     }
-// };

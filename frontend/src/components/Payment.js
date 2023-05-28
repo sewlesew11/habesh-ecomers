@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-function Payment({ fname, lname, email, amount, tx_ref, public_key, orderId }) {
+function Payment({ fname, lname, email, amount, tx_ref, public_key, orderId, order }) {
 
 
 
@@ -11,7 +11,7 @@ function Payment({ fname, lname, email, amount, tx_ref, public_key, orderId }) {
             <form method="POST" action="https://api.chapa.co/v1/hosted/pay" >
                 <input type="hidden" name="public_key" value={public_key} />
                 <input type="hidden" name="tx_ref" value={tx_ref} />
-                <input type="hidden" name="amount" value={amount} />
+                <input type="hidden" name="amount" value={order.totalPrice} />
                 <input type="hidden" name="currency" value="ETB" />
                 <input type="hidden" name="email" value={email} />
                 <input type="hidden" name="first_name" value={fname} />

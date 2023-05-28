@@ -116,65 +116,7 @@ orderRouter.get(
 
     })
 );
-// Chapa
-orderRouter.post('/:id/initialize-payment', async (req, res) => {
-    try {
-        const order = await Order.findById(req.params.id);
-        if (order) {
-            // Retrieve payment details from the request body
-            const {
-                amount,
-                currency,
-                email,
-                firstName,
-                lastName,
-                phoneNumber,
-                txRef,
-                callbackUrl,
-                returnUrl,
-                title,
-                description
-            } = req.body;
 
-            // Make a request to the Chapa API to initialize the payment
-            const requestOptions = {
-                headers: {
-                    Authorization: 'Bearer CHAPUBK_TEST-f23unAi8tFo0Mh0WikIexcVpWzxPGwoZ',
-                    'Content-Type': 'application/json',
-                },
-            };
-
-            const payload = {
-                amount,
-                currency,
-                email,
-                first_name: firstName,
-                last_name: lastName,
-                phone_number: phoneNumber,
-                tx_ref: txRef,
-                callback_url: callbackUrl,
-                return_url: returnUrl,
-                customization: {
-                    title,
-                    description,
-                },
-            };
-            const response = await axios.post('https://api.chapa.co/v1/transaction/initialize', payload, requestOptions);
-            const checkoutUrl = response.data.data.checkout_url;
-
-            // Update the order document with the Chapa checkout URL
-            order.chapaCheckoutUrl = checkoutUrl;
-            await order.save();
-
-            res.status(200).json({ checkoutUrl });
-        } else {
-            res.status(404).json({ message: 'Order not found' });
-        }
-    } catch (error) {
-        console.error('Error:', error.message);
-        res.status(500).json({ error: 'An error occurred while initializing the payment' });
-    }
-});
 
 orderRouter.put('/:id/pay', isAuth, expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
@@ -219,7 +161,6 @@ orderRouter.delete(
 orderRouter.put(
     '/:id/deliver',
     isAuth,
-    isAdmin,
     expressAsyncHandler(async (req, res) => {
         const order = await Order.findById(req.params.id);
         if (order) {

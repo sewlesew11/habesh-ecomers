@@ -43,11 +43,72 @@ main {
   padding: 1rem;
 }
 
-footer {
+.footer {
   grid-area: footer;
   background-color: #203040;
   color: #ffffff;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: start;
+  justify-items: center;
 }
+
+/* Footer section styles */
+.footer-section {
+  margin-bottom: 20px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.social-links a {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.footer-links a {
+  color: #ffffff;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .footer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-section h3 {
+    font-size: 16px;
+  }
+
+  .social-links a {
+    margin-right: 8px;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+  }
+}
+
+
 
 /* common */
 h1 {
@@ -578,4 +639,19 @@ img.large {
 
 .support-users .unread {
   background-color: #f02020;
+}
+
+/* Terms And Regulation */
+.terms-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.terms-content {
+  margin-top: 20px;
+}
+
+.terms-content p {
+  margin-bottom: 20px;
 }

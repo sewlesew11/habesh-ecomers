@@ -11,6 +11,7 @@ export default function RegisterScreen(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [agreeTerms, setAgreeTerms] = useState(false); // State for the checkbox
 
 
     const location = useLocation();
@@ -27,6 +28,8 @@ export default function RegisterScreen(props) {
         e.preventDefault();
         if (password !== confirmPassword) {
             alert('Password and confirm password are not match')
+        } else if (!agreeTerms) {
+            alert('Please agree to the terms and regulations');
         } else {
             dispatch(register(name, email, password));
         }
@@ -84,6 +87,19 @@ export default function RegisterScreen(props) {
                         required
                         onChange={e => setConfirmPassword(e.target.value)}
                     ></input>
+                </div>
+                <div>
+                    <label>
+                        <input
+                            type="checkbox"
+                            required
+                            checked={agreeTerms}
+                            onChange={(e) => setAgreeTerms(e.target.checked)}
+                        ></input>
+                        <span>
+                            <Link to='/terms'>I agree to the terms and regulations</Link>
+                        </span>
+                    </label>
                 </div>
                 <div>
                     <label />

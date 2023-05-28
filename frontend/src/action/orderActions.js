@@ -17,9 +17,6 @@ import {
     ORDER_DETAILS_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_INITIALIZE_PAYMENT_FAIL,
-    ORDER_INITIALIZE_PAYMENT_REQUEST,
-    ORDER_INITIALIZE_PAYMENT_SUCCESS,
     ORDER_LIST_FAIL,
     ORDER_LIST_REQUEST,
     ORDER_LIST_SUCCESS,
@@ -145,22 +142,7 @@ export const detailsOrder = (orderId) => async (dispatch, getState) => {
         dispatch({ type: ORDER_DETAILS_FAIL, payload: message });
     }
 };
-// Chapa
-export const initializePayment = (orderId, paymentData) => async (dispatch) => {
-    try {
-        dispatch({ type: ORDER_INITIALIZE_PAYMENT_REQUEST });
 
-        const response = await axios.post(`http://localhost:5000/api/orders/${orderId}/initialize-payment`, paymentData);
-        const { checkoutUrl } = response.data;
-
-        dispatch({ type: ORDER_INITIALIZE_PAYMENT_SUCCESS, payload: checkoutUrl });
-    } catch (error) {
-        dispatch({
-            type: ORDER_INITIALIZE_PAYMENT_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
-        });
-    }
-};
 
 // Order Payment Action
 export const payOrder = (order, paymentResult) => async (
@@ -207,14 +189,14 @@ export const listOrderMine = () => async (dispatch, getState) => {
     }
 };
 export const listOrders = () => async (dispatch, getState) => {
-    // export const listOrders = ({ seller = '' }) => async (dispatch, getState) => {
+
     dispatch({ type: ORDER_LIST_REQUEST });
     const {
         userSignin: { userInfo },
     } = getState();
     try {
         const { data } = await axios.get('http://localhost:5000/api/orders', {
-            //  const { data } = await axios.get(`http://localhost:5000/api/orders?seller=${seller}`, {
+
             headers: { Authorization: `Bearer ${userInfo.token}` },
         });
         console.log(data);

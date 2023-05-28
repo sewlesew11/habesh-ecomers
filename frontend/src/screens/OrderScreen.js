@@ -12,19 +12,18 @@ import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstant
 
 
 
-export default function OrderScreen(props) {
+export default function OrderScreen(props,) {
     const { id } = useParams();
     const orderId = id;
+    // const { paymentMethod } = props;
     const paymentMethod = useSelector((state) => state.cart.paymentMethod);
     const [sdkReady, setSdkReady] = useState(false);
 
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [email, setEmail] = useState('');
-    const [amount, setAmount] = useState('');
 
-
-    const tx_ref = `${fname}-tx-10122022`;
+    const tx_ref = `${fname}-tx-16122022`;
     const public_key = 'CHAPUBK_TEST-f23unAi8tFo0Mh0WikIexcVpWzxPGwoZ';
 
     const orderDetails = useSelector((state) => state.orderDetails);
@@ -198,23 +197,36 @@ export default function OrderScreen(props) {
                             </li>
                             {!order.isPaid && (
                                 <li>
-
-                                    {!sdkReady ? (
-                                        <LoadingBox></LoadingBox>
-                                    ) : (
-
+                                    {paymentMethod === 'PayPal' && (
                                         <>
-                                            {errorPay && (
-                                                <MessageBox variant="danger">{errorPay}</MessageBox>
+                                            {!sdkReady ? (
+                                                <LoadingBox></LoadingBox>
+                                            ) : (
+
+                                                <>
+                                                    {errorPay && (
+                                                        <MessageBox variant="danger">{errorPay}</MessageBox>
+                                                    )}
+                                                    {loadingPay && <LoadingBox></LoadingBox>}
+
+                                                    <PayPalButton
+                                                        amount={order.totalPrice}
+                                                        onSuccess={successPaymentHandler}
+                                                    ></PayPalButton>
+
+
+
+
+                                                </>
                                             )}
-                                            {loadingPay && <LoadingBox></LoadingBox>}
-                                            {paymentMethod === 'PayPal' && (
-                                                <PayPalButton
-                                                    amount={order.totalPrice}
-                                                    onSuccess={successPaymentHandler}
-                                                ></PayPalButton>
-                                            )}
+                                        </>
+                                    )}
+                                    {/* Chapa payment */}
+                                    {paymentMethod === 'Chapa' && (
+                                        <>
+
                                             <div className='form'>
+                                                <h2>Pay With Chapa</h2>
                                                 <lable htmlfor="fname">First Name:</lable> <br />
                                                 <input
                                                     onChange={(e) => {
@@ -241,30 +253,40 @@ export default function OrderScreen(props) {
 
                                                 <lable htmlfor="amount">Amount:</lable> <br />
                                                 <input
-                                                    onChange={(e) => {
-                                                        setAmount(e.target.value)
-                                                        console.log(amount)
-                                                    }}
+                                                    value={order.totalPrice}
                                                     type="number" />
-                                                {paymentMethod === 'Chapa' && (
+
+                                                <>
+                                                    {errorPay && (
+                                                        <MessageBox variant="danger">{errorPay}</MessageBox>
+                                                    )}
+                                                    {loadingPay && <LoadingBox></LoadingBox>}
+
                                                     <Payment
                                                         fname={fname}
                                                         lname={lname}
                                                         email={email}
-                                                        amount={amount}
+                                                        amount={order.totalPrice}
                                                         tx_ref={tx_ref}
                                                         public_key={public_key}
                                                         orderId={orderId}
+                                                        order={order}
+
+
                                                     />
-                                                )}
+
+                                                </>
                                             </div>
+
                                         </>
                                     )}
-
                                 </li>
 
+                                // tomorow will be continued!!
                             )}
-                            {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+
+
+                            {!userInfo.isAdmin && order.isPaid && !order.isDelivered && (
                                 <li>
                                     {loadingDeliver && <LoadingBox></LoadingBox>}
                                     {errorDeliver && (

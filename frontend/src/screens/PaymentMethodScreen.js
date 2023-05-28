@@ -12,7 +12,7 @@ export default function PaymentMethodScreen(props) {
         navigate('/shipping');
     }
 
-    const [paymentMethod, setPaymentMethod] = useState('PayPal || Chapa');
+    const [paymentMethod, setPaymentMethod] = useState('PayPal');
 
     const dispatch = useDispatch();
     const submitHandler = (e) => {

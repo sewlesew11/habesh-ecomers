@@ -14,9 +14,6 @@ import {
     ORDER_DETAILS_FAIL,
     ORDER_DETAILS_REQUEST,
     ORDER_DETAILS_SUCCESS,
-    ORDER_INITIALIZE_PAYMENT_FAIL,
-    ORDER_INITIALIZE_PAYMENT_REQUEST,
-    ORDER_INITIALIZE_PAYMENT_SUCCESS,
     ORDER_LIST_FAIL,
     ORDER_LIST_REQUEST,
     ORDER_LIST_SUCCESS,
@@ -110,19 +107,7 @@ export const orderDetailsReducer = (state = { loading: true }, action) => {
     }
 };
 
-// Chapa
-export const orderInitializePaymentReducer = (state = {}, action) => {
-    switch (action.type) {
-        case ORDER_INITIALIZE_PAYMENT_REQUEST:
-            return { loading: true };
-        case ORDER_INITIALIZE_PAYMENT_SUCCESS:
-            return { loading: false, success: true, chapaCheckoutUrl: action.payload };
-        case ORDER_INITIALIZE_PAYMENT_FAIL:
-            return { loading: false, error: action.payload };
-        default:
-            return state;
-    }
-};
+
 // Order Payment Reducer
 
 export const orderPayReducer = (state = {}, action) => {

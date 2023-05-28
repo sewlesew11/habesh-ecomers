@@ -30,6 +30,8 @@ import MapScreen from './screens/MapScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import SupportScreen from './screens/SupportScreen';
 import ChatBox from './components/ChatBox';
+import TermsAndRegulationScreen from './screens/TermsAndRegulationScreen';
+import Footer from './components/Footer';
 
 
 
@@ -181,7 +183,7 @@ function App() {
         <main>
 
           <Routes>
-            {/* <Route path="/seller/:id" element={<SellerScreen />} /> */}
+            <Route path="/terms" element={<TermsAndRegulationScreen />} />
             <Route path="/cart/:id?" element={<CartScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} exact />
             <Route path="/product/:id/edit" element={<ProductEditScreen />} exact />
@@ -228,11 +230,9 @@ function App() {
           </Routes>
 
         </main>
-        <footer className="row center">
-          {userInfo && !userInfo.isAdmin &&
-            <ChatBox userInfo={userInfo} />
-          }
-          <div>All right reserved</div>{' '}
+        <footer className="row center" >
+          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
+          <Footer></Footer>
         </footer>
       </div >
     </BrowserRouter >
