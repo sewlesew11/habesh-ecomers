@@ -56,7 +56,7 @@ export default function SearchScreen(props) {
         return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
     };
     return (
-        <div>
+        <div className='result'>
             <div className="row">
                 {loading ? (
                     <LoadingBox></LoadingBox>
@@ -65,6 +65,7 @@ export default function SearchScreen(props) {
                 ) : (
                     <div>{products.length} Results</div>
                 )}
+                <div></div>
                 <div>
                     Sort by{' '}
                     <select
@@ -127,7 +128,7 @@ export default function SearchScreen(props) {
                                 </li>
                             ))}
                         </ul>
-                    )}
+
                     </div>
                     <div>
                         <h3>Avg. Customer Review</h3>

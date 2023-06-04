@@ -60,6 +60,7 @@ function App() {
       <div className="grid-container">
         <header className="row">
           <div>
+
             <button
               type="button"
               className="open-sidebar"
@@ -67,28 +68,17 @@ function App() {
             >
               <i className="fa fa-bars"></i>
             </button>
+
             <Link className="brand" to="/">
-              habesha
-
+              Habesha
             </Link>
+
           </div>
+
           <div>
-            <Routes>
-              <Route path="/" element={<SearchBox />} />
-            </Routes>
-
-
-            <Routes>
-              <Route
-                render={({ history }) => (
-                  <SearchBox history={history}></SearchBox>
-
-                )}
-
-              ></Route>
-            </Routes>
-
+            <SearchBox /> {/* Render the SearchBox directly */}
           </div>
+
           <div>
             <Link to="/cart">Cart
               {cartItems.length > 0 && (
@@ -150,6 +140,7 @@ function App() {
 
           </div>
         </header>
+
         <aside className={sidebarIsOpen ? 'open' : ''}>
           <ul className="categories">
             <li>

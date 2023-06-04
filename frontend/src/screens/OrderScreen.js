@@ -12,18 +12,26 @@ import { ORDER_DELIVER_RESET, ORDER_PAY_RESET } from '../constants/orderConstant
 
 
 
+
 export default function OrderScreen(props,) {
     const { id } = useParams();
     const orderId = id;
     // const { paymentMethod } = props;
     const paymentMethod = useSelector((state) => state.cart.paymentMethod);
+    // const [paymentMethod, setPaymentMethod] = useState('');
     const [sdkReady, setSdkReady] = useState(false);
 
     const [fname, setFname] = useState('');
     const [lname, setLname] = useState('');
     const [email, setEmail] = useState('');
 
-    const tx_ref = `${fname}-tx-16122022`;
+    const generateTxRef = () => {
+        const timestamp = Date.now();
+        const uniqueId = Math.random().toString(36).substring(2, 15);
+        return `${fname}-tx-${timestamp}-${uniqueId}`;
+    };
+
+    const tx_ref = generateTxRef();
     const public_key = 'CHAPUBK_TEST-f23unAi8tFo0Mh0WikIexcVpWzxPGwoZ';
 
     const orderDetails = useSelector((state) => state.orderDetails);
@@ -272,10 +280,12 @@ export default function OrderScreen(props,) {
                                                         orderId={orderId}
                                                         order={order}
 
+                                                    //  setPaymentMethod={setPaymentMethod}
 
                                                     />
 
                                                 </>
+
                                             </div>
 
                                         </>
@@ -284,6 +294,7 @@ export default function OrderScreen(props,) {
 
                                 // tomorow will be continued!!
                             )}
+
 
 
                             {!userInfo.isAdmin && order.isPaid && !order.isDelivered && (

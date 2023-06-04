@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { listProducts, listTopRatedProducts, } from "../action/productActions";
 import { useEffect, } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+
 
 
 export default function HomeScreen() {
@@ -29,34 +31,39 @@ export default function HomeScreen() {
 
     return (
         <div>
-            <h1>Top Rated Products</h1>
-            {topLoading ? (
-                <LoadingBox></LoadingBox>
-            ) : topError ? (
-                <MessageBox variant="danger">{topError}</MessageBox>
-            ) : (
-                <>
-                    {topProducts.length === 0 && <MessageBox>No Product Found</MessageBox>}
-                    <Carousel
-                        showArrows
-                        autoPlay
-                        showThumbs={false}
-                        infiniteLoop={true}
-                        transitionDuration={1000}
-                        reverse
-                    >
-                        {topProducts.map((product) => (
-                            <div key={product._id}>
-                                <Link to={`/product/${product._id}`}>
-                                    <img src={`http://localhost:5000${product.image}`} alt={product.name} />
-                                    <p className="legend">{product.name}</p>
-                                </Link>
-                            </div>
-                        ))}
-                    </Carousel>
-                </>
 
-            )}
+            <div className='Top-rated'>
+
+                <h1>Top Rated Product</h1>
+                {topLoading ? (
+                    <LoadingBox></LoadingBox>
+                ) : topError ? (
+                    <MessageBox variant="danger">{topError}</MessageBox>
+                ) : (
+                    <>
+                        {topProducts.length === 0 && <MessageBox>No Product Found</MessageBox>}
+                        <Carousel
+                            showArrows
+                            autoPlay
+                            showThumbs={false}
+                            infiniteLoop={true}
+                            transitionDuration={1000}
+                            reverse
+                        >
+                            {topProducts.map((product) => (
+                                <div key={product._id}>
+                                    <Link to={`/product/${product._id}`}>
+                                        <img src={`http://localhost:5000${product.image}`} alt={product.name} />
+                                        <Header></Header>
+                                        <p className="legend">{product.name}</p>
+                                    </Link>
+                                </div>
+                            ))}
+                        </Carousel>
+                    </>
+
+                )}
+            </div>
 
             <h2>Featured Products</h2>
             {loading ? (

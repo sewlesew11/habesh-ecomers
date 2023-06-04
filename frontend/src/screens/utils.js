@@ -5,19 +5,24 @@ export const prices = [
         max: 0,
     },
     {
-        name: `$1 to $10`,
+        name: `1 birr to 1000 birr`,
         min: 1,
-        max: 10,
-    },
-    {
-        name: `$10 to $100`,
-        min: 10,
-        max: 100,
-    },
-    {
-        name: `$100 to $1000`,
-        min: 100,
         max: 1000,
+    },
+    {
+        name: `1000 birr to 5000 birr`,
+        min: 1000,
+        max: 50000,
+    },
+    {
+        name: `5000 birr to 10000 birr`,
+        min: 5000,
+        max: 10000,
+    },
+    {
+        name: `10000 birr to 30000 birr`,
+        min: 10000,
+        max: 30000,
     },
 ];
 export const ratings = [

@@ -43,16 +43,21 @@ main {
   padding: 1rem;
 }
 
+.fotter {
+  background-color: #203040;
+  width: 100%;
+  color: #ffffff;
+}
+
 .footer {
   grid-area: footer;
-  background-color: #203040;
-  color: #ffffff;
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   align-items: start;
   justify-items: center;
+
 }
 
 /* Footer section styles */
@@ -105,6 +110,7 @@ main {
 
   .footer-bottom {
     font-size: 12px;
+    justify-content: center;
   }
 }
 
@@ -182,6 +188,7 @@ button.small {
 header a {
   color: #ffffff;
   padding: 1rem;
+
 }
 
 a.brand {
@@ -204,14 +211,25 @@ a.brand {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  height: 150%;
+
+
 }
+
 
 .row.center {
   justify-content: center;
+
+}
+
+.result {
+  margin-top: 3rem;
 }
 
 .row.top {
   align-items: flex-start;
+  margin-top: 2rem;
+
 }
 
 .row.start {
@@ -220,6 +238,7 @@ a.brand {
 
 .col-1 {
   flex: 1 1 25rem;
+
 }
 
 .col-2 {
@@ -260,6 +279,7 @@ button.open-sidebar {
   background: none;
   color: #ffffff;
   cursor: pointer;
+
 }
 
 button.open-sidebar:hover {
@@ -425,6 +445,7 @@ img.large {
   flex: 1;
   padding: 1rem;
   font-weight: bold;
+  margin-top: 3rem;
 }
 
 .checkout-steps>div.active {
@@ -455,12 +476,19 @@ img.large {
 }
 
 /* Carousel */
+.Top-rated {
+  margin: 2rem;
+  padding-top: 1rem;
+}
+
 .carousel .slide img {
-  max-width: 25rem;
+  max-width: 20rem;
 }
 
 
 /* Search */
+
+
 .search button {
   border-radius: 0 0.5rem 0.5rem 0;
   border-right: none;
@@ -471,7 +499,10 @@ img.large {
   border-radius: 0.5rem 0 0 0.5rem;
   border-right: none;
   margin-left: 0.5rem;
+
 }
+
+
 
 .active {
   font-weight: bold;
@@ -558,6 +589,7 @@ img.large {
   position: fixed;
   right: 1rem;
   bottom: 1rem;
+
 }
 
 .chatbox ul {
@@ -567,6 +599,7 @@ img.large {
 
 .chatbox li {
   margin-bottom: 1rem;
+
 }
 
 .chatbox input {
@@ -576,10 +609,12 @@ img.large {
 .support-users {
   background: #f0f0f0;
   height: 100%;
+  margin-top: 3rem;
 }
 
 .support-users li {
   background-color: #f8f8f8;
+  margin-top: 2rem;
 }
 
 .support-users button {
@@ -592,6 +627,7 @@ img.large {
   margin: 0;
   background-color: #f0f0f0;
   border-bottom: 0.1rem #c0c0c0 solid;
+
 }
 
 .support-users li:hover {
@@ -604,6 +640,7 @@ img.large {
 
 .support-messages {
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 .support-messages input {
@@ -654,4 +691,8 @@ img.large {
 
 .terms-content p {
   margin-bottom: 20px;
+}
+
+.logo {
+  background-color: black;
 }

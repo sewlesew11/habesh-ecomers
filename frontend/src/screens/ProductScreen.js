@@ -63,8 +63,10 @@ export default function ProductScreen(props) {
             ) : error ? (
                 <MessageBox variant="danger">{error}</MessageBox>
             ) : (
-                <div><Link to="/">Back to Result</Link>
+                <div >
+
                     <div className="row top" >
+                        <Link className="Back-to" to="/">Back to Result</Link>
                         <div className="col-2">
                             <img className="large" src={`http://localhost:5000${product.image}`} alt={product.name}></img>
 

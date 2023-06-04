@@ -43,16 +43,16 @@ export default function ProductListScreen(props) {
         }
         dispatch(
             listProducts({ pageNumber })
-            // listProducts({ seller: sellerMode ? userInfo._id : '', pageNumber })
+
         );
     }, [
         createdProduct,
         dispatch,
         navigate,
-        //   sellerMode,
+
         successCreate,
         successDelete,
-        //   userInfo._id,
+
         pageNumber,
     ]);
     /// dispatch delete action
@@ -66,10 +66,10 @@ export default function ProductListScreen(props) {
         dispatch(createProduct());
     };
     return (
-        <div>
+        <div className='product-create'>
             <div className="row">
                 <h1>Products</h1>
-                <button type="button" className="primary" onClick={createHandler}>
+                <button style={{ margin: '3rem 0' }} type="button" className="primary" onClick={createHandler}>
                     Create Product
                 </button>
             </div>
